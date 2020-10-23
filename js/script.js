@@ -49,19 +49,29 @@ bvai.addEventListener("click",
         contenitore = cognomi[i]; // con la variabile d'appoggio salvo il valore della variabile che voglio sovrascrivere
         cognomi[i] = cognomi[i + 1]; // sovrascrivo bianchi con rossi
         cognomi[i + 1] = contenitore; // sovrascrivendo rossi con il valore salvato nella variabili d'appoggio che e bianchi
-        // scambiando l'elemento lo faccio ripartire dell'elemento in posizione zero
-        i = 0;
+        i = 0; // scambiando l'elemento lo faccio ripartire dell'elemento in posizione zero
+      } else {
+
+        i++;
       }
-      i++;
     }
 
     // output arrey ordinata
-    var i = 0;
+    i = 0;
     while (i < cognomi.length) {
       arreyOrd = arreyOrd + "<li>" + cognomi[i] + "</li>";
       i++;
       outputCognOrd.innerHTML = "Lista ordinata: " + "<br>" + arreyOrd;
     }
 
-    // posizione cognome utente
+    i = 0;
+    controllo = true;
+    while (i < cognomi.length && controllo) {
+      if (cognUte.value === cognomi[i]) {
+        controllo = false;
+      }
+      i++;
+    }
+    // output posizione cognome utente
+    document.getElementById("ordine").innerHTML = "La posizione del tuo cognome e': " + i;
 } )
