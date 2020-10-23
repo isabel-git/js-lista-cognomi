@@ -1,4 +1,5 @@
 var bvai = document.getElementById("vai");
+var controllo = true;
 var arreyNonOrd = "";
 var outputCognNonOrd = document.getElementById("listaNonOrd");
 var arreyOrd = "";
@@ -16,12 +17,27 @@ bvai.addEventListener("click",
     var cognUte = document.getElementById("cognome");
     console.log("cognome: ",cognUte.value);
 
-    // output lista non ordinata
+    // controllo cognome nell'arrey
     var i = 0;
+    while (controllo && (i < cognomi.length)) {
+
+      if (cognUte.value === cognomi[i]) {
+        controllo = false;
+      }
+
+      i++;
+    }
+
+    if (controllo) {
+      cognomi.push(cognUte.value);
+    }
+
+    // output lista non ordinata
+    i = 0;
     while (i < cognomi.length) {
       arreyNonOrd = arreyNonOrd + "<li>" + cognomi[i] + "</li>";
       i++;
-      outputCognNonOrd.innerHTML = arreyNonOrd;
+      outputCognNonOrd.innerHTML = "Lista non ordinata: " + "<br>" + arreyNonOrd;
     }
 
     // ordinare l'arrey
@@ -44,7 +60,7 @@ bvai.addEventListener("click",
     while (i < cognomi.length) {
       arreyOrd = arreyOrd + "<li>" + cognomi[i] + "</li>";
       i++;
-      outputCognOrd.innerHTML = arreyOrd;
+      outputCognOrd.innerHTML = "Lista ordinata: " + "<br>" + arreyOrd;
     }
 
     // posizione cognome utente
