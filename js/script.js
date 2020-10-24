@@ -1,4 +1,5 @@
 var bvai = document.getElementById("vai");
+var input = document.getElementById("cognome");
 var controllo = true;
 var arreyNonOrd = "";
 var outputCognNonOrd = document.getElementById("listaNonOrd");
@@ -14,14 +15,18 @@ var cognomi = ["Bianchi", "Rossi", "Duzioni", "Balsano", "Verdi"];
 bvai.addEventListener("click",
   function() {
     // input cognome utente
-    var cognUte = document.getElementById("cognome");
-    console.log("cognome: ",cognUte.value);
+    stringa = input.value;
+    console.log("cognome: ",stringa);
+
+    // Iniziale maiuscola
+    stringa = stringa.charAt(0).toUpperCase() + stringa.slice(1);
+    console.log("cognome in maiuscolo: ",stringa);
 
     // controllo cognome nell'arrey
     var i = 0;
     while (controllo && (i < cognomi.length)) {
 
-      if (cognUte.value === cognomi[i]) {
+      if (stringa === cognomi[i]) {
         controllo = false;
       }
 
@@ -29,7 +34,7 @@ bvai.addEventListener("click",
     }
 
     if (controllo) {
-      cognomi.push(cognUte.value);
+      cognomi.push(stringa);
     }
 
     // output lista non ordinata
@@ -67,11 +72,11 @@ bvai.addEventListener("click",
     i = 0;
     controllo = true;
     while (i < cognomi.length && controllo) {
-      if (cognUte.value === cognomi[i]) {
+      if (stringa === cognomi[i]) {
         controllo = false;
       }
       i++;
     }
     // output posizione cognome utente
-    document.getElementById("ordine").innerHTML = "La posizione del tuo cognome e': " + i;
+    document.getElementById("posizione").innerHTML = "La posizione del tuo cognome e': " + i;
 } )
